@@ -71,6 +71,7 @@ LoveAnimation = {
 	relativeOriginY = 0,
 	visible = true,
 	flipX = 1,
+	flipY = 1,
 
 	_stateEndCallbacks = {},
 	_stateStartCallbacks = {},
@@ -216,12 +217,11 @@ function LoveAnimation:draw(scaleX, scaleY)
 		self.x,
 		self.y,
 		self.rotation,
-		self.flipX * (scaleX or 1), -- negative scale to flip
-		scaleY or 1, -- scale
-		self.relativeOriginX * state_descriptor.frameW,
-		self.relativeOriginY * state_descriptor.frameH,
-		0,0)
-
+		self.flipX, -- negative scale to flip
+		self.flipY,
+		self.relativeOriginX,-- * state_descriptor.frameW,
+		self.relativeOriginY
+	)
 end
 
 --
@@ -478,3 +478,5 @@ end
 function LoveAnimation:onStateStart(state, callback)
 	self._stateStartCallbacks[state] = callback
 end
+
+return LoveAnimation
